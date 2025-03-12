@@ -12,4 +12,13 @@ class Mahasiswa {
         $mahasiswa = $this->db->query("SELECT * FROM mahasiswa");
         return $mahasiswa->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function save($data_mahassiwa) {
+        $mahasiswa = $this->db->query("INSERT INTO mahasiswa");
+    }
+
+    public function delete()
+    {
+        $mahasiswa = $this->db->query("DELETE FROM mahasiswa");
+    }
 }
