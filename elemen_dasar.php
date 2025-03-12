@@ -1,42 +1,84 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_error', 1);
-error_reporting(E_ALL);
+/**
+ * Membuat kelas
+ * membuat property
+ * membuat method
+ */
 
-class Mahasiswa {
-    // property / deklarasi variabel
+ class Mahasiswa {
     public $nim;
-    public $nama_depan;
-    public $nama_belakang;
+    public $nama_lengkap;
+    public $jenis_kelamin;
+    private $ipk;
 
-    // method
-    // function dengan mengembalikan nilai
-    public function nama_lengkap()
+    /**
+     * Method (function)
+     */
+    public function tampil()
     {
-        $hasil = $this->nama_depan." ".$this->nama_belakang;
-
-        return $hasil;
+        echo $this->nim." ".$this->nama_lengkap;
     }
 
-    // function tanpa megembalikan nilai
-    public function tampil_nama_lengkap()
+    /**
+     * function menggunakan parameter
+     */
+    public function setIpk($nilai)
     {
-        echo $this->nama_depan." ".$this->nama_belakang;
+        return $this->ipk = $nilai;
     }
+
+    public function getIpk()
+    {
+        echo "IPK anda : ".$this->ipk."<br>";
+    }
+
+ }
+
+ /**
+  * Menggunakan class(object) mahasiswa
+  */
+$mahasiswa = new Mahasiswa;
+$mahasiswa->nim = "20200101";
+$mahasiswa->nama_lengkap = "Uli Rizki";
+$mahasiswa->setIpk(3.0);
+$mahasiswa->tampil();
+$mahasiswa->getIpk();
+
+/**
+ * Mmebuat object baru
+ */
+$mahasiswa_1 = new Mahasiswa;
+$mahasiswa_1->nim = "20200202";
+$mahasiswa_1->nama_lengkap = "Alan";
+$mahasiswa_1->tampil();
+
+/**
+ * Class menggunakan parameter
+ */
+class SendMail {
+    private $email;
+    private $subject;
+
+    /**
+     * function __construct untuk mengambil data parameter
+     */
+    public function __construct($email, $subject)
+    {
+        $this->email = $email;
+        $this->subject = $subject;
+    }
+
+    public function send()
+    {
+        echo "<br>Email terkirim ke : ".$this->email;
+    }
+
+    public function resend()
+    {
+        echo "<br>Email terkirim ke : ".$this->email;
+    }
+
 }
 
-// Object 1
-$mahasiswa = new Mahasiswa;
-$mahasiswa->nama_depan = "Uli";
-$mahasiswa->nama_belakang = "Rizki";
-
-echo $mahasiswa->nama_lengkap()."<br>";
-$mahasiswa->tampil_nama_lengkap();
-
-// Object 2
-$mahasiswa_1 = new Mahasiswa;
-$mahasiswa_1->nama_depan = "Andi";
-$mahasiswa_1->nama_belakang = "Sunyoto";
-
-echo "<br>";
-$mahasiswa_1->tampil_nama_lengkap();
+$kirim_email = new SendMail('uli@gmail.com',"Test Mail");
+$kirim_email->send();
